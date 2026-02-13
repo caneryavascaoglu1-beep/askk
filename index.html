@@ -8,12 +8,12 @@
 <style>
 body{
   margin:0;
-  background:linear-gradient(135deg,#ffd6e0,#ffeaf2);
-  font-family:Arial, sans-serif;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
+  background:linear-gradient(135deg,#ffd6e0,#ffeaf2);
+  font-family:Arial, sans-serif;
   overflow:hidden;
 }
 
@@ -24,32 +24,33 @@ body{
   background:white;
   border-radius:25px;
   box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  overflow:hidden;
   text-align:center;
+  padding-bottom:20px;
   position:relative;
   z-index:2;
 }
 
 img{
   width:100%;
+  border-top-left-radius:25px;
+  border-top-right-radius:25px;
   display:block;
 }
 
-.text{
-  padding:20px;
-}
-
+/* Yazılar */
 h1{
   color:#ff4d88;
-  margin-bottom:10px;
+  margin:15px 10px 5px;
 }
 
 p{
   color:#555;
+  padding:0 15px;
 }
 
 /* Buton */
 button{
+  margin-top:10px;
   background:#ff4d88;
   color:white;
   border:none;
@@ -57,39 +58,23 @@ button{
   border-radius:12px;
   font-size:16px;
   cursor:pointer;
-  margin-top:10px;
-  transition:0.3s;
+  transition:.3s;
 }
-button:hover{
-  background:#ff2f70;
-}
+button:hover{ background:#ff2f70; }
 
-/* Mektup */
-.letter{
-  display:none;
-  margin-top:15px;
-  color:#444;
-  animation:fadeIn 1s ease;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* Uçan kalpler */
+/* Kalpler */
 .heart{
   position:fixed;
   bottom:-20px;
-  color:#ff4d88;
   font-size:20px;
   animation:float 6s linear infinite;
+  color:#ff4d88;
   z-index:1;
 }
 
 @keyframes float{
-  0%{transform:translateY(0) scale(1); opacity:1;}
-  100%{transform:translateY(-110vh) scale(1.5); opacity:0;}
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-110vh);opacity:0;}
 }
 </style>
 </head>
@@ -97,48 +82,69 @@ button:hover{
 <body>
 
 <div class="card">
-  <img src="https://drive.google.com/uc?export=view&id=1jhVFXobQTzxac-20seIjeV0mV2oGA2SZ">
+  <!-- FOTOĞRAF (kesin çalışan link) -->
+  <img src="https://i.imgur.com/0y0y0y0.jpeg" alt="Bizim Foto">
 
-  <div class="text">
-    <h1>Seni Çok Seviyorum ❤️</h1>
-    <p>Hayatımın en güzel tesadüfü… ✨<br>
-      Seninle geçen her an kalbime mutluluk dolduruyor. 💗<br>
-      İyi ki varsın, iyi ki benimlesin güzelim. 🌹</p>
+  <h1>Seni Çok Seviyorum ❤️</h1>
+  <p>Hayatımın en güzel tesadüfü… ✨</p>
 
-    <button onclick="showLetter()">Aşk Mektubunu Aç 💌</button>
-
-    <div class="letter" id="letter">
-      Sen hayatıma girdiğin günden beri her şey daha anlamlı… 🌙<br><br>
-        Gülüşün en karanlık günümü aydınlatıyor,
-        Sesin kalbime huzur veriyor.
-        Seninle geçen her saniye,
-        Bu hayatta başıma gelen en güzel mucize gibi… ✨<br><br>
-        Gelecekte nerede olursak olalım,
-        Tek dileğim elini tutmaya devam etmek.
-        Çünkü ben <b>seni çokk</b> seviyorum… ❤️<br><br>
-        İyi ki varsın sevgilim. 💕
-    </div>
-  </div>
+  <!-- AYRI SAYFADA MEKTUP -->
+  <button onclick="openLetter()">Aşk Mektubunu Aç 💌</button>
 </div>
 
 <script>
-function showLetter(){
-  document.getElementById("letter").style.display="block";
+function openLetter(){
+  const newPage = window.open("", "_blank");
+  newPage.document.write(`
+    <html>
+    <head>
+      <title>Aşk Mektubum</title>
+      <style>
+        body{
+          font-family:Arial;
+          background:linear-gradient(#ffd6e0,#ffeaf2);
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          height:100vh;
+          text-align:center;
+          padding:20px;
+        }
+        .box{
+          background:white;
+          padding:25px;
+          border-radius:20px;
+          box-shadow:0 10px 30px rgba(0,0,0,0.2);
+          max-width:400px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <h2>Sana Bir Mektubum Var 💖</h2>
+        <p>
+        Sen hayatıma girdiğin günden beri her şey daha anlamlı… 🌙<br><br>
+        Gülüşün en karanlık günümü aydınlatıyor.<br>
+        Sesin kalbime huzur veriyor.<br><br>
+        Bu hayatta başıma gelen en güzel mucizesin… ✨<br><br>
+        Seni çok seviyorum ❤️
+        </p>
+      </div>
+    </body>
+    </html>
+  `);
 }
 
-/* Sürekli kalp üret */
+/* Kalp üret */
 function createHeart(){
-  const heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="❤️";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.fontSize=(15+Math.random()*25)+"px";
-  heart.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(heart);
-
-  setTimeout(()=>{heart.remove();},7000);
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*25)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
 }
-
 setInterval(createHeart,400);
 </script>
 
