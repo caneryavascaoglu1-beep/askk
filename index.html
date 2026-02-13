@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caner ❤️ Pelin</title>
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(135deg,#ffd6e0,#ffeaf2);
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* Kart */
+.card{
+  width:90%;
+  max-width:400px;
+  background:white;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  overflow:hidden;
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+.text{
+  padding:20px;
+}
+
+h1{
+  color:#ff4d88;
+  margin-bottom:10px;
+}
+
+p{
+  color:#555;
+}
+
+/* Buton */
+button{
+  background:#ff4d88;
+  color:white;
+  border:none;
+  padding:12px 22px;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.3s;
+}
+button:hover{
+  background:#ff2f70;
+}
+
+/* Mektup */
+.letter{
+  display:none;
+  margin-top:15px;
+  color:#444;
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* Uçan kalpler */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  color:#ff4d88;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  z-index:1;
+}
+
+@keyframes float{
+  0%{transform:translateY(0) scale(1); opacity:1;}
+  100%{transform:translateY(-110vh) scale(1.5); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <img src="https://drive.google.com/uc?export=view&id=1jhVFXobQTzxac-20seIjeV0mV2oGA2SZ">
+
+  <div class="text">
+    <h1>Seni Çok Seviyorum ❤️</h1>
+    <p>Hayatımın en güzel tesadüfü… ✨<br>
+      Seninle geçen her an kalbime mutluluk dolduruyor. 💗<br>
+      İyi ki varsın, iyi ki benimlesin güzelim. 🌹</p>
+
+    <button onclick="showLetter()">Aşk Mektubunu Aç 💌</button>
+
+    <div class="letter" id="letter">
+      Sen hayatıma girdiğin günden beri her şey daha anlamlı… 🌙<br><br>
+        Gülüşün en karanlık günümü aydınlatıyor,
+        Sesin kalbime huzur veriyor.
+        Seninle geçen her saniye,
+        Bu hayatta başıma gelen en güzel mucize gibi… ✨<br><br>
+        Gelecekte nerede olursak olalım,
+        Tek dileğim elini tutmaya devam etmek.
+        Çünkü ben <b>seni çokk</b> seviyorum… ❤️<br><br>
+        İyi ki varsın sevgilim. 💕
+    </div>
+  </div>
+</div>
+
+<script>
+function showLetter(){
+  document.getElementById("letter").style.display="block";
+}
+
+/* Sürekli kalp üret */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(15+Math.random()*25)+"px";
+  heart.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{heart.remove();},7000);
+}
+
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
